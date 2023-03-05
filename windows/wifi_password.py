@@ -19,3 +19,6 @@ def WifiPassword():
         with open(file_path, "w") as f :
             f.write(Wifi_password + "\n") 
 
+
+
+
