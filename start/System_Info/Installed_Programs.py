@@ -15,7 +15,7 @@ def get_installed_programs():
             pass
     return installed_programs
 
-installed_programs = get_installed_programs()
-print("\n             All installed programs\n________________________________________________________________\n")
-print(installed_programs)
-print("\n________________________________________________________________")
+# installed_programs = get_installed_programs()
+# print("\n             All installed programs\n________________________________________________________________\n")
+# print(installed_programs)
+# print("\n________________________________________________________________")

@@ -6,20 +6,7 @@ from selenium import webdriver
 
 
 def get_network_info():
-    print("\n           Network\n________________________________________________________________\n")
-    
-    # Get Internet IP address
-    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-        s.connect(('8.8.8.8', 80))
-        internet_ip_address = s.getsockname()[0]
-        print("IP Address In Local Network : ", internet_ip_address)
-        
-    # Get local IP address and hostname
-    local_ip_address = socket.gethostbyname('localhost')
-    hostname = socket.gethostname()
-    print("Hostname : ", hostname)
-    print('Local Ip Address : ', local_ip_address)
-    
+      
     # Get network interfaces and addresses
     all_nics = psutil.net_if_addrs()
     for nic, addrs in all_nics.items():
@@ -28,6 +15,30 @@ def get_network_info():
                 network_address = f"{nic} : {addr.address}"
                 print(network_address)
 
+get_network_info()
+
+# get_network_info()
+
+def Local_Ip():
+
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        s.connect(('8.8.8.8', 80))
+        internet_ip_address = s.getsockname()[0]
+        print("IP Address In Local Network : ", internet_ip_address)
+        return internet_ip_address
+    
+# Local_Ip()
+
+def HostName():
+    
+    # Get local IP address and hostname
+    local_ip_address = socket.gethostbyname('localhost')
+    hostname = socket.gethostname()
+    print("Hostname : ", hostname)
+    print('Local Ip Address : ', local_ip_address)
+    return hostname , local_ip_address
+
+def OpenPorts():
     # Find open ports
     def check_port(port):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -42,9 +53,6 @@ def get_network_info():
         futures = [executor.submit(check_port, port) for port in range(1, 65536)]
         open_ports = [future.result() for future in concurrent.futures.as_completed(futures) if future.result()]
         print("Open ports:", open_ports)
-        
-    return internet_ip_address, local_ip_address, hostname, all_nics, open_ports
-
-get_network_info()
-
-
+        return open_ports
+    
+# OpenPorts()
