@@ -1,12 +1,10 @@
-from flask import Flask, request
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
-def receive_file():
-    file = request.files['file']
-    file.save('received_file.txt')
-    return 'File received successfully'
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='1', port=80)
